@@ -27,10 +27,6 @@ const Pagination = () => {
     const params = new URLSearchParams(searchParams)
     const { replace } = useRouter();
 
-    console.log(pathName, 'pat')
-    console.log(searchParams, 'paramsSearc')
-    console.log(params, 'params')
-
 
     const [currentMonth, setCurrentMonth] = useState(5)
 

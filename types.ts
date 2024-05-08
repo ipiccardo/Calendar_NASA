@@ -3,6 +3,6 @@ export interface Pictures {
   date: string;
   explanation: string;
   media_type: string;
-  thumbnailUrl: string;
+  thumbnail_url: string;
   url: string;
 }

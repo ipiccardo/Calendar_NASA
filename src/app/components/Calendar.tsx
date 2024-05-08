@@ -18,7 +18,7 @@ export default async function Calendar() {
 
     const allPictures = await api.list(startDay, endDay)
 
-    console.log(currentMonth, 'mes actual')
+    console.log(allPictures, 'allPictures')
 
 
     const totalDaysOfMonth: Pictures[] = [];
@@ -33,7 +33,7 @@ export default async function Calendar() {
                 date: currentDate,
                 explanation: "",
                 media_type: '',
-                thumbnailUrl: '',
+                thumbnail_url: '',
                 url: '/default.jpg'
             });
 
@@ -50,7 +50,15 @@ export default async function Calendar() {
                         {totalDaysOfMonth?.map((picture: Pictures, i: number) => {
                             return (
                                 <div key={currentDay + i} className={`h-80 border-2 border-solid border-white rounded`}>
-                                    <Image style={{ objectFit: "cover" }} loading='lazy' className='h-full w-full overflow-hidden aspect-square' width={500} height={500} src={`${picture.media_type === 'image' ? picture.url : '/default.jpg'}`} alt="imagen" />
+                                    {
+                                        picture.media_type === 'image' || picture.media_type !== 'video' ?
+                                            (
+                                                <Image style={{ objectFit: "cover" }} loading='lazy' className='h-full w-full overflow-hidden aspect-square' width={500} height={500} src={`${picture.media_type === 'image' ? picture.url : '/default.jpg'}`} alt="imagen" />
+                                            ) :
+                                            (
+                                                <Image style={{ objectFit: "cover" }} loading='lazy' className='h-full w-full overflow-hidden aspect-square' width={500} height={500} src={`${picture.thumbnail_url}`} alt="imagen" />
+                                            )
+                                    }
                                 </div>
                             );
                         })}
