@@ -3,6 +3,7 @@ import api from '../../../api'
 import Image from 'next/image'
 import { getCurrentMonthData } from '../../../utils'
 import { Pictures } from '../../../types'
+import Pagination from './Pagination'
 
 export default async function Calendar() {
 
@@ -17,11 +18,13 @@ export default async function Calendar() {
 
     const allPictures = await api.list(startDay, endDay)
 
+    console.log(currentMonth, 'mes actual')
+
 
     const totalDaysOfMonth: Pictures[] = [];
     for (let i = 1; i <= daysInCurrentMonth; i++) {
         const currentDate = `${currentYear}-${currentMonth}-${i <= 9 ? '0' + i : i}`;
-        const picture = allPictures.find((p: Pictures) => p.date === currentDate.toString());
+        const picture = allPictures?.find((p: Pictures) => p.date === currentDate.toString());
 
         picture ? totalDaysOfMonth?.push(picture) :
 
@@ -41,13 +44,8 @@ export default async function Calendar() {
         <>
             {
                 <div>
-                    <div>
-                        <h1 className='text-center'>MAYO</h1>
-                        <div className='flex justify-between'>
-                            <button>Next</button>
-                            <button>Prev</button>
-                        </div>
-                    </div>
+                    <Pagination />
+
                     <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4 sm:gap-6 lg:gap-8 w-full py-8 px-8 ">
                         {totalDaysOfMonth?.map((picture: Pictures, i: number) => {
                             return (
