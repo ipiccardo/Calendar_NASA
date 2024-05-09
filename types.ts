@@ -6,3 +6,20 @@ export interface Pictures {
   thumbnail_url: string;
   url: string;
 }
+
+export interface CalendarProps {
+  selectedMonth: string | any;
+}
+
+
+
+export interface Month {
+  number: number;
+  name: string;
+}
+
+export interface PaginationProps {
+  monthOnGoing: string;
+  formattedSelectedMonth: string;
+}
+

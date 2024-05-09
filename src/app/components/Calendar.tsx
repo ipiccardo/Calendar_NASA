@@ -2,11 +2,13 @@ import React from 'react'
 import api from '../../../api'
 import Image from 'next/image'
 import { getCurrentMonthData } from '../../../utils'
-import { Pictures } from '../../../types'
+import { CalendarProps, Pictures } from '../../../types'
 import Pagination from './Pagination'
 import Link from 'next/link'
 
-export default async function Calendar({ selectedMonth }: any) {
+
+
+export default async function Calendar({ selectedMonth }:CalendarProps) {
 
     // Sacar esto a una función que siempre me traiga el inicio de mes, el fin de mes, el current mes, la cantidad de dias del mes
     // ---------------------------------------------------------

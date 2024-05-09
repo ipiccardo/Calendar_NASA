@@ -1,4 +1,6 @@
-export const getCurrentMonthData = (formattedSelectedMont: any) => {
+import { MonthData } from "./types";
+
+export const getCurrentMonthData = (formattedSelectedMont: string):MonthData  => {
   const today = new Date();
   const currentMonthIndex = today.getMonth();
   const daysInCurrentMonth = new Date(
@@ -17,3 +19,5 @@ export const getCurrentMonthData = (formattedSelectedMont: any) => {
     daysInCurrentMonth: daysInCurrentMonth,
   };
 };
+
+

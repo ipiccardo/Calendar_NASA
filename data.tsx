@@ -1,4 +1,4 @@
-export const months = [
+export const months: Month[] = [
     { number: 1, name: 'ENERO' },
     { number: 2, name: 'FEBRERO' },
     { number: 3, name: 'MARZO' },
@@ -11,4 +11,5 @@ export const months = [
     { number: 10, name: 'OCTUBRE' },
     { number: 11, name: 'NOVIEMBRE' },
     { number: 12, name: 'DICIEMBRE' }
-];
+  ];
+  
