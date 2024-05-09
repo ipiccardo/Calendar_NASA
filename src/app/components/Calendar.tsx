@@ -15,15 +15,17 @@ export default async function Calendar({ selectedMonth }: any) {
 
     const { currentDay, currentMonth, currentYear, daysInCurrentMonth } = getCurrentMonthData(formattedSelectedMonth)
 
-    const startDay = `${currentYear}-${currentMonth !== formattedSelectedMonth ? formattedSelectedMonth : currentMonth}-01`
-    const endDay = `${currentYear}-${currentMonth !== formattedSelectedMonth ? formattedSelectedMonth : currentMonth}-${currentMonth !== formattedSelectedMonth ? daysInCurrentMonth.toString() : currentDay}`
+    const startDay = `${currentYear}-${currentMonth !== formattedSelectedMonth && formattedSelectedMonth !== '0' ? formattedSelectedMonth : currentMonth}-01`
+    const endDay = `${currentYear}-${currentMonth !== formattedSelectedMonth && formattedSelectedMonth !== '0'? formattedSelectedMonth : currentMonth}-${currentMonth !== formattedSelectedMonth && formattedSelectedMonth !== '0' ? daysInCurrentMonth.toString() : currentDay}`
+
 
     const allPictures = await api.list(startDay, endDay)
 
     const totalDaysOfMonth: Pictures[] = [];
+
     for (let i = 1; i <= daysInCurrentMonth; i++) {
 
-        const currentDate = `${currentYear}-${currentMonth !== formattedSelectedMonth ? formattedSelectedMonth : currentMonth}-${i <= 9 ? '0' + i : i}`;
+        const currentDate = `${currentYear}-${currentMonth !== formattedSelectedMonth && formattedSelectedMonth !== '0' ? formattedSelectedMonth : currentMonth}-${i <= 9 ? '0' + i : i}`;
 
         const picture = allPictures?.find((p: Pictures) => p.date.toString() === currentDate.toString());
 

@@ -10,7 +10,6 @@ export default function Home({ searchParams }: { searchParams?: { month: string 
 
   return (
     <main className="flex min-h-screen flex-col items-center justify-between p-24 bg-primary text-white">
-       {/* <Pagination formattedSelectedMonth={formattedSelectedMonth} /> */}
       <Calendar selectedMonth={selectedMonth} />
     </main>
   );

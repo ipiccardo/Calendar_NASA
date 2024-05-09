@@ -14,12 +14,12 @@ const api = {
       .then((datos) => {
         return datos;
       });
-    pictures.push(data);
+    pictures.push({...data});
     return data;
   },
   fetch: async (date: any["date"]): Promise<any> => {
-    if (pictures[0]?.length) {
-      const pic = pictures[0]?.find((picture: any) => picture.date.toString() === date.toString());
+    if (pictures.length) {
+      const pic = pictures?.find((picture: any) => picture.date === date);
       if (!pic) {
         const data = await fetch(
           `${APOD_URL}?api_key=${API_KEY}&thumbs=true&date=${date}`
