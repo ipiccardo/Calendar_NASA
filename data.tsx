@@ -1,3 +1,5 @@
+import { Month } from "./types";
+
 export const months: Month[] = [
     { number: 1, name: 'ENERO' },
     { number: 2, name: 'FEBRERO' },

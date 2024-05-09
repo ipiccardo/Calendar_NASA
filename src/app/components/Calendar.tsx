@@ -1,7 +1,7 @@
 import React from 'react'
 import api from '../../../api'
 import Image from 'next/image'
-import { getCurrentMonthData } from '../../../utils'
+import { fillWidthoUtPicture, getCurrentMonthData, getDayDataFormatted } from '../../../utils'
 import { CalendarProps, Pictures } from '../../../types'
 import Pagination from './Pagination'
 import Link from 'next/link'
@@ -10,38 +10,14 @@ import Link from 'next/link'
 
 export default async function Calendar({ selectedMonth }:CalendarProps) {
 
-    // Sacar esto a una función que siempre me traiga el inicio de mes, el fin de mes, el current mes, la cantidad de dias del mes
-    // ---------------------------------------------------------
-
     const formattedSelectedMonth = selectedMonth < '9' && !selectedMonth.includes('0') ? `0${selectedMonth}` : selectedMonth
 
-    const { currentDay, currentMonth, currentYear, daysInCurrentMonth } = getCurrentMonthData(formattedSelectedMonth)
-
-    const startDay = `${currentYear}-${currentMonth !== formattedSelectedMonth && formattedSelectedMonth !== '0' ? formattedSelectedMonth : currentMonth}-01`
-    const endDay = `${currentYear}-${currentMonth !== formattedSelectedMonth && formattedSelectedMonth !== '0'? formattedSelectedMonth : currentMonth}-${currentMonth !== formattedSelectedMonth && formattedSelectedMonth !== '0' ? daysInCurrentMonth.toString() : currentDay}`
-
+    const {startDay, endDay} = getDayDataFormatted(formattedSelectedMonth)
 
     const allPictures = await api.list(startDay, endDay)
 
-    const totalDaysOfMonth: Pictures[] = [];
+    const {totalDaysOfMonth, currentMonth, currentYear, currentDay}:any = fillWidthoUtPicture(allPictures, formattedSelectedMonth)
 
-    for (let i = 1; i <= daysInCurrentMonth; i++) {
-
-        const currentDate = `${currentYear}-${currentMonth !== formattedSelectedMonth && formattedSelectedMonth !== '0' ? formattedSelectedMonth : currentMonth}-${i <= 9 ? '0' + i : i}`;
-
-        const picture = allPictures?.find((p: Pictures) => p.date.toString() === currentDate.toString());
-
-        picture ? totalDaysOfMonth?.push(picture) :
-
-            totalDaysOfMonth.push({
-                title: '',
-                date: currentDate,
-                explanation: "",
-                media_type: '',
-                thumbnail_url: '',
-                url: '/default.jpg'
-            });
-    }
 
     return (
         <>

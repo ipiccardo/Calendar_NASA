@@ -23,3 +23,11 @@ export interface PaginationProps {
   formattedSelectedMonth: string;
 }
 
+
+export interface MonthData {
+  currentDay: string;
+  currentMonth: string;
+  currentYear: number;
+  currentMonthName: string;
+  daysInCurrentMonth: number;
+}
