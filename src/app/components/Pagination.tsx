@@ -21,22 +21,21 @@ export const months = [
     { number: 12, name: 'DICIEMBRE' }
 ];
 
-const Pagination = () => {
+const Pagination = ({ monthOnGoing, formattedSelectedMonth }: any) => {
     const pathName = usePathname()
     const searchParams = useSearchParams();
     const params = new URLSearchParams(searchParams)
     const { replace } = useRouter();
 
-
-    const [currentMonth, setCurrentMonth] = useState(5)
+    const [currentMonth, setCurrentMonth] = useState(parseInt(monthOnGoing))
 
     params.set('month', currentMonth.toString())
 
     const handleChangeMonth = (increment: number) => {
         const newMonth = currentMonth + increment;
         if (newMonth < 1) {
-            setCurrentMonth(12);
-        } else if (newMonth > 12) {
+            setCurrentMonth(parseInt(monthOnGoing));
+        } else if (newMonth > parseInt(monthOnGoing)) {
             setCurrentMonth(1);
         } else {
             setCurrentMonth(newMonth);

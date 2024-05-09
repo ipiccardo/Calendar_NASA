@@ -1,9 +1,11 @@
-export const getCurrentMonthData = () => {
+export const getCurrentMonthData = (formattedSelectedMont: any) => {
   const today = new Date();
   const currentMonthIndex = today.getMonth();
   const daysInCurrentMonth = new Date(
     today.getFullYear(),
-    currentMonthIndex + 1,
+    currentMonthIndex + 1 === parseInt(formattedSelectedMont)
+      ? currentMonthIndex + 1
+      : parseInt(formattedSelectedMont),
     0
   ).getDate();
 
