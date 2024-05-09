@@ -1,8 +1,8 @@
 'use client'
 
-import React from 'react'
+import React, { useEffect } from 'react'
 import { useState } from 'react'
-import Button from './Button'
+import Button from '../components/ui/Button'
 import { useRouter, useSearchParams, usePathname } from "next/navigation";
 
 // SACAR A UN ARCHIVO EXTERNO
@@ -28,29 +28,34 @@ const Pagination = ({ monthOnGoing, formattedSelectedMonth }: any) => {
     const { replace } = useRouter();
 
     const [currentMonth, setCurrentMonth] = useState(parseInt(monthOnGoing))
+    
 
     params.set('month', currentMonth.toString())
+
 
     const handleChangeMonth = (increment: number) => {
         const newMonth = currentMonth + increment;
         if (newMonth < 1) {
-            setCurrentMonth(parseInt(monthOnGoing));
-        } else if (newMonth > parseInt(monthOnGoing)) {
             setCurrentMonth(1);
+        } else if (newMonth > parseInt(monthOnGoing)) {
+            setCurrentMonth(parseInt(formattedSelectedMonth));
         } else {
             setCurrentMonth(newMonth);
         }
     };
-
-    replace(`${pathName}?${params?.toString()}`)
-
+    
+    useEffect(() => {
+        replace(`${pathName}?${params?.toString()}`)
+    }, [currentMonth])
+    
+    
 
     return (
         <div>
-            <h1 className='text-center'>{months[currentMonth - 1].name}</h1>
+            <h1 className='text-center text-4xl'>{months[currentMonth - 1].name}</h1>
             <div className='flex justify-between'>
                 <Button onClick={() => handleChangeMonth(-1)}>Prev</Button>
-                <Button onClick={() => handleChangeMonth(1)}>Next</Button>
+                <Button onClick={() => handleChangeMonth(1)}  name='next'>Next</Button>
             </div>
         </div>
     )

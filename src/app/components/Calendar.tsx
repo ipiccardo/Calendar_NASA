@@ -4,18 +4,18 @@ import Image from 'next/image'
 import { getCurrentMonthData } from '../../../utils'
 import { Pictures } from '../../../types'
 import Pagination from './Pagination'
+import Link from 'next/link'
 
 export default async function Calendar({ selectedMonth }: any) {
 
     // Sacar esto a una función que siempre me traiga el inicio de mes, el fin de mes, el current mes, la cantidad de dias del mes
     // ---------------------------------------------------------
 
-    const formattedSelectedMonth = selectedMonth < '9' ? `0${selectedMonth}` : selectedMonth
+    const formattedSelectedMonth = selectedMonth < '9' && !selectedMonth.includes('0') ? `0${selectedMonth}` : selectedMonth
 
-    const { currentDay, currentMonth, currentYear, currentMonthName, daysInCurrentMonth } = getCurrentMonthData(formattedSelectedMonth)
+    const { currentDay, currentMonth, currentYear, daysInCurrentMonth } = getCurrentMonthData(formattedSelectedMonth)
 
     const startDay = `${currentYear}-${currentMonth !== formattedSelectedMonth ? formattedSelectedMonth : currentMonth}-01`
-    const amountOfDays = `${currentYear}-${currentMonth !== formattedSelectedMonth ? formattedSelectedMonth : currentMonth}-${daysInCurrentMonth}`
     const endDay = `${currentYear}-${currentMonth !== formattedSelectedMonth ? formattedSelectedMonth : currentMonth}-${currentMonth !== formattedSelectedMonth ? daysInCurrentMonth.toString() : currentDay}`
 
     const allPictures = await api.list(startDay, endDay)
@@ -49,7 +49,7 @@ export default async function Calendar({ selectedMonth }: any) {
                             const dayOfWeek = new Date(currentYear, currentMonth !== formattedSelectedMonth ? formattedSelectedMonth : parseInt(currentMonth) - 1, i).toLocaleDateString('en-US', { weekday: 'long' });
                             const dayInitial = dayOfWeek;
                             return (
-                                <div key={currentDay + i} className={`h-80 border-2 border-solid border-white rounded relative`}>
+                                <Link href={`/${picture.date}`} key={currentDay + i} className={`h-80 border-2 border-solid border-white rounded relative`}>
                                     {
                                         picture?.media_type === 'image' || picture?.media_type !== 'video' ?
                                             (
@@ -61,7 +61,7 @@ export default async function Calendar({ selectedMonth }: any) {
                                     }
                                     <span className="absolute left-4 top-1 text-2xl font-semibold">{i + 1}</span>
                                     <span className="absolute right-4 bottom-1 text-lg font-semibold">{dayInitial}</span>
-                                </div>
+                                </Link>
                             );
                         })}
                     </div>
