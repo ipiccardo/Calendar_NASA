@@ -39,7 +39,7 @@ export default async function Calendar({ selectedMonth }:CalendarProps) {
                                                 <Image style={{ objectFit: "cover" }} quality={100} loading='lazy' className='h-full w-full overflow-hidden aspect-square hover:opacity-80' width={500} height={500} src={`${picture?.thumbnail_url}`} alt="imagen" />
                                             )
                                     }
-                                    <span className="absolute left-4 top-1 text-2xl font-semibold">{i + 1}</span>
+                                    <span className="absolute left-4 top-1 text-2xl font-semibold">{`${i < 9 ? `0${i+1}` :  i+1}`}</span>
                                     <span className="absolute right-4 bottom-1 text-lg font-semibold">{dayInitial}</span>
                                 </Link>
                             );

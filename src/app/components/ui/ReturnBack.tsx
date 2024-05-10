@@ -14,7 +14,7 @@ export const ReturnBack = () => {
     const month = parseInt(convertIntoArray[1])
     
   return (
-    <Link href={`/?month=${month}`}>Back</Link>
+    <Link href={`/?month=${month}`} className="inline-block bg-white text-primary px-4 py-2 mt-10 ml-8 rounded-lg border border-primary hover:text-primary hover:bg-secondary hover:border-transparent transition-colors duration-300 absolute top-2 left-2">Back</Link>
   )
 }
 

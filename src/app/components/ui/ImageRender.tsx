@@ -8,7 +8,7 @@ const ImageRender = ({ singlePic }: ImageRenderProps) => {
     const { url, thumbnail_url, title, explanation, media_type } = singlePic
 
     return (
-        <div className="md:max-w-4xl mx-auto p-8 bg-white shadow-md rounded-lg">
+        <div className="md:max-w-4xl mx-auto mt-10 mb-10 p-8 bg-white shadow-md rounded-lg">
             <div className="relative max-w-[900px] max-h-[500px]  md:h-[900px] md:max-w-full md:max-h-[900px] rounded-lg mb-6">
                 <Image
                     quality={100}
