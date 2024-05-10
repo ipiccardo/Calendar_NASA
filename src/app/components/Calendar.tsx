@@ -16,7 +16,7 @@ export default async function Calendar({ selectedMonth }:CalendarProps) {
 
     const allPictures = await api.list(startDay, endDay)
 
-    const {totalDaysOfMonth, currentMonth, currentYear, currentDay}:any = fillWidthoUtPicture(allPictures, formattedSelectedMonth)
+    const {totalDaysOfMonth, currentMonth, currentYear, currentDay} = fillWidthoUtPicture(allPictures, formattedSelectedMonth)
 
 
     return (

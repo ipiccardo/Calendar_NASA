@@ -38,7 +38,7 @@ export const getDayDataFormatted = (formattedSelectedMonth: string) => {
   export const fillWidthoUtPicture = (allPictures:Pictures[], formattedSelectedMonth:string) => {
     const totalDaysOfMonth: Pictures[] = [];
 
-    const { currentMonth, currentYear, daysInCurrentMonth } = getCurrentMonthData(formattedSelectedMonth)
+    const { currentMonth, currentYear, daysInCurrentMonth, currentDay } = getCurrentMonthData(formattedSelectedMonth)
 
   
     for (let i = 1; i <= daysInCurrentMonth; i++) {
@@ -62,7 +62,8 @@ export const getDayDataFormatted = (formattedSelectedMonth: string) => {
     return {
       totalDaysOfMonth,
       currentMonth,
-      currentYear
+      currentYear,
+      currentDay,
     }
   }
 

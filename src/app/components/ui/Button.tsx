@@ -1,11 +1,7 @@
 import React from 'react';
+import { ButtonProps } from '../../../../types';
 
-interface ButtonProps {
-    children: React.ReactNode;
-    onClick?: () => void;
-    disabled?: boolean;
-    name?: string;
-}
+
 
 const Button = ({ children, onClick, disabled, name }: ButtonProps) => {
 

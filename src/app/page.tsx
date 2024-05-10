@@ -4,7 +4,6 @@ import { Suspense } from "react";
 
 export default function Home({ searchParams }: { searchParams?: { month: string } }) {
 
-
   const selectedMonth = searchParams?.month || ''
 
 

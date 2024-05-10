@@ -14,8 +14,7 @@ const Pagination:React.FC<PaginationProps> = ({ monthOnGoing, formattedSelectedM
     const params = new URLSearchParams(searchParams)
     const { replace } = useRouter();
 
-    const [currentMonth, setCurrentMonth] = useState(parseInt(monthOnGoing))
-    
+    const [currentMonth, setCurrentMonth] = useState(formattedSelectedMonth !== monthOnGoing && formattedSelectedMonth !== '0' ? parseInt(formattedSelectedMonth) : parseInt(monthOnGoing))
 
     params.set('month', currentMonth.toString())
 

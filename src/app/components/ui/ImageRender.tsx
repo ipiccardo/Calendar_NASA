@@ -1,16 +1,10 @@
 import React from 'react'
 import Image from "next/image";
-import { Pictures } from '../../../../types';
-
-
-interface ImageRenderProps {
-    singlePic: Pictures;
-}
+import { ImageRenderProps } from '../../../../types';
 
 
 const ImageRender = ({ singlePic }: ImageRenderProps) => {
-
-
+    
     const { url, thumbnail_url, title, explanation, media_type } = singlePic
 
     return (

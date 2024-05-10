@@ -31,3 +31,17 @@ export interface MonthData {
   currentMonthName: string;
   daysInCurrentMonth: number;
 }
+
+
+
+export interface ImageRenderProps {
+  singlePic: Pictures;
+}
+
+
+export interface ButtonProps {
+  children: React.ReactNode;
+  onClick?: () => void;
+  disabled?: boolean;
+  name?: string;
+}
